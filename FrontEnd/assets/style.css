@@ -127,10 +127,11 @@ li:hover {
 }
 .gallery {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-row-gap: 20px; 
+	
 }
 
 .gallery img {
@@ -139,7 +140,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+    margin: auto;
 }
 #contact > * {
 	text-align: center;
