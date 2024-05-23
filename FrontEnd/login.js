@@ -28,16 +28,16 @@
             <main>
                 <div class="formContainer"> 
                     <form id="form">
-                        <h2>Log In</h2>
+                        <h2 id="h2-login">Log In</h2>
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" placeholder="email" required>
+                        <input type="email" id="email" placeholder="" required>
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" placeholder="mot de passe" required>
+                        <input type="password" id="password" placeholder="" required>
                         <button type="submit">Se connecter</button>
                     </form>
-                </div>
+               
             </main>
-
+            <div class="mdp-oublie">Mot de passe oublié</div>
             <footer>
                 <nav>
                     <ul>
@@ -98,7 +98,6 @@
 
         function isValidEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            // const re = /\\S+@\\S+/;
             return re.test(email);
         }
     }); 
