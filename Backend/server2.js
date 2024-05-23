@@ -1,18 +1,27 @@
 const express = require('express');
-const cors = require('cors');
-
 const app = express();
+const port = 5678;
 
-// Utiliser le middleware CORS
-app.use(cors());
+// Middleware pour parser le JSON dans les requêtes
+app.use(express.json());
 
-// Définir vos routes ici
+const validCredentials = {
+    email: 'sophie.bluel@test.tld',
+    password: 'SOphie'
+};
+
+// Définir la route POST pour /api/users/login
 app.post('/api/users/login', (req, res) => {
-  // Logique de votre route
+    const { email, password } = req.body;
+
+    // Logique de validation des informations d'identification
+    if (email === validCredentials.email && password === validCredentials.password) {
+        res.status(200).json({ message: "Connexion réussie" });
+    } else {
+        res.status(401).json({ message: "Email ou mot de passe incorrect" });
+    }
 });
 
-// Démarrer le serveur
-app.listen(3000, () => {
-  console.log('Serveur démarré sur le port 3000');
+app.listen(port, () => {
+    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
 });
- 

@@ -7,6 +7,9 @@
 
 
  /*1: Récupérer les informations du formulaire */
+ /*2:Email valide renvoie bien le token*/
+ /*3: Si pas bon 401 en console*/
+
  
  document.addEventListener("DOMContentLoaded", function() {
     let loginBtn = document.querySelector(".login");
@@ -61,8 +64,19 @@
             console.log("Email:", email);
             console.log("Mot de passe:", password);
 
+/*ETAPES A FAIRE*/
+
+/*
+3.bis verifier si l'email et ou mdp est vide+ alerte
+4 : si les champs email et ou mot de passe sont vide creer cette  => alert('Merci de remplir tous les champs')i l'email est bien un type email
+5 : Envoyer le (REGEX) avec une autre alerte si l'email n'est pas de type email et quelle ne correspond pas a l'email en ma possession => alert('Merci d'entrer un email valide')
+??// soit id correct - API succès avec Token
+6: si information incorrecte  soit 401 -> alerte mdp/email incorrect*/
+
+
+
             // Effectuer la requête POST pour se connecter
-            try {
+            async function connectionPost(email, password) {
                 const response = await fetch("http://localhost:5678/api/users/login", {
                     method: 'POST',
                     headers: {
@@ -71,28 +85,18 @@
                     body: JSON.stringify({
                         email: email,
                         password: password
-                    })
+                    }),
                 });
-                console.log(response);
+
                 const data = await response.json();
                 console.log(data);
-            } catch (error) {
-                console.error("Erreur lors de la requête fetch :", error);
             }
-        });
-    });
+connectionPost(email, password);
+
+          
+        }); 
+    }); 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
