@@ -1,6 +1,10 @@
-// DATA SET 
-// ASYNC 
-// Créer des blocs html avec les backstick `` 
+// DATA SET
+// ASYNC
+// Créer des blocs html avec les backstick ``
+
+const logout = document.querySelector("#logout");
+const login = document.querySelector("#login");
+const token = localStorage.getItem("token");
 
 async function getFilters() {
   try {
@@ -30,7 +34,9 @@ async function getFilters() {
 }
 
 function setActiveButton(button) {
-  document.querySelectorAll(".filter-option").forEach((b) => b.classList.remove("active"));
+  document
+    .querySelectorAll(".filter-option")
+    .forEach((b) => b.classList.remove("active"));
   button.classList.add("active");
 }
 
@@ -48,12 +54,15 @@ async function getWorks(categoryId = 0) {
     const data = await response.json();
     const gallery = document.querySelector(".gallery");
     gallery.innerHTML = "";
-    const filterData = data.filter((work) => work.categoryId === Number(categoryId) || categoryId === 0);
+    // modal.innerHTML = "";
+    const filterData = data.filter(
+      (work) => work.categoryId === Number(categoryId) || categoryId === 0
+    );
 
     const figures = filterData.map(({ id, imageUrl, title }) => {
       const figure = document.createElement("figure");
-      
-      //<figure data-id="3"></figure> 
+
+      //<figure data-id="3"></figure>
       figure.dataset.id = id;
 
       const img = document.createElement("img");
@@ -85,3 +94,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+async function editMode() {
+  const token = localStorage.getItem("token");
+  const toto = document.getElementById("toto");
+  if (token) {
+    toto.style.display = "block";
+    login.style.display = "none";
+    logout.style.display = "block";
+  }else{
+    login.style.display = "block";
+    toto.style.display = "none";
+  }
+}
+
+
+logout.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  if(token){
+    logout.style.display = "none";
+  }
+})
+
+editMode();

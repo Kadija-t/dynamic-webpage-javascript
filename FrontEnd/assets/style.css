@@ -277,3 +277,18 @@ footer{
 	margin-top: 800px;
 	margin-left: 920px;
 }
+
+.error{
+	color:red;
+	font-weight: 800;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.d-none{
+	display: none;
+}
+
+.d-block{
+    display: block;
+}
