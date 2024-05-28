@@ -96,14 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function editMode() {
   const token = localStorage.getItem("token");
-  const toto = document.getElementById("toto");
+  const connection = document.getElementById("connection");
   if (token) {
-    toto.style.display = "block";
+    connection.style.display = "block";
     login.style.display = "none";
     logout.style.display = "block";
   }else{
     login.style.display = "block";
-    toto.style.display = "none";
+    logout.style.display = "none";
+    connection.style.display = "none";
   }
 }
 
@@ -116,3 +117,18 @@ logout.addEventListener("click", () => {
 })
 
 editMode();
+
+async function hideFilters() {
+  const filtersToHide = document.getElementById("categories-picture");
+  const banner = document.getElementById("banner");
+  const token = localStorage.getItem("token");
+  if (token) {
+    filtersToHide.style.display = "none";
+    banner.style.display = "block";
+  }else{
+    filtersToHide.style.display = "block";
+    banner.style.display = "none";
+  }
+}
+
+hideFilters();
