@@ -59,10 +59,26 @@
           </p>
         </article>
       </section>
-      <section id="portfolio">
+      <section id="portfolio"><div class="overlay"></div>
         <h2>Mes Projets
           <i id="icone-modifier" class="fa-solid fa-pen-to-square"></i>
-          <span class="btn-modifer"> modifier</span>
+          <button  id="btn-modifier"> modifier</button>
+          <div id="categories-picture"></div>
+        <div class="gallery"></div>
+          <div class="modal" id="modal">
+            <div class="modal-content">
+            <div id="close-modal" ><i class="fa-solid fa-xmark"></i></div>
+            <h3>Galerie photo</h3> 
+            <p>LOREM</p>
+            <div id="modal-gallery">
+            
+          <div class="categories-picture"></div>
+          <div id="gallery"></div>
+
+          </div>
+            <button>Ajouter une photo</button>
+          </div>
+          </div>
         </h2>
         <div id="categories-picture"></div>
         <div class="gallery"></div>
@@ -89,6 +105,6 @@
         </ul>
       </nav>
     </footer>
-    <script src="works.js"></script>
+    <script defer src="works.js"></script>
   </body>
 </html>

@@ -54,15 +54,13 @@ async function getWorks(categoryId = 0) {
     const data = await response.json();
     const gallery = document.querySelector(".gallery");
     gallery.innerHTML = "";
-    // modal.innerHTML = "";
     const filterData = data.filter(
       (work) => work.categoryId === Number(categoryId) || categoryId === 0
     );
 
-    const figures = filterData.map(({ id, imageUrl, title }) => {
+      const figures = filterData.map(({ id, imageUrl, title }) => {
       const figure = document.createElement("figure");
 
-      //<figure data-id="3"></figure>
       figure.dataset.id = id;
 
       const img = document.createElement("img");
@@ -132,3 +130,52 @@ async function hideFilters() {
 }
 
 hideFilters();
+
+function openModal() {
+  let openBtn = document.getElementById("btn-modifier");
+  let closeModal = document.getElementById("close-modal");
+  let modal = document.getElementById("modal");
+
+  openBtn.addEventListener("click", () => {
+      modal.style.display = "block";
+      // galleryModal.style.display = "block";
+  });
+
+  closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+      
+  });
+
+  window.addEventListener("click", (event) => {
+      if (event.target == modal) {
+          modal.style.display = "none";
+        
+      }
+  });
+}
+
+openModal();
+
+/*afficher les works dans la modale*/
+
+async function fetchAndDisplayWorksModal() {
+  const response = await fetch("http://localhost:5678/api/works");
+  const data = await response.json();
+  const galleryModal = document.getElementById("gallery");
+
+  data.forEach((work) => {
+      const figure = document.createElement("figure");
+      const img = document.createElement("img");
+      const figcaption = document.createElement("figcaption");
+
+      img.src = work.imageUrl;
+      img.alt = work.title;
+      figcaption.textContent = work.title;
+
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+      galleryModal.appendChild(figure);
+  });
+}
+
+fetchAndDisplayWorksModal();

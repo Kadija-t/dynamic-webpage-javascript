@@ -12,3 +12,14 @@ OK
 
 // 2. enlever les filtres + mettre incone avec le modifier à coté de Mes Projets
 
+OK 
+
+// 3. ajouter la bannière noire
+
+OK
+
+// 4. creer et afficher modale
+
+
+ ! OK => améliorer design+ images styles + incone supprimer
+bouton modifier et modale que si co 

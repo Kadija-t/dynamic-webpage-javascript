@@ -132,3 +132,45 @@ document.addEventListener("DOMContentLoaded", () => {
   getWorks()
 })
 
+
+
+const galleryModal = document.getElementById("gallery");
+
+/*fonction permettant de récupérer les travaux du backend*/
+/*
+async function getWorksModal() {
+  const response = await fetch("http://localhost:5678/api/works");
+  const data = await response.json();
+
+  data.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+    img.src = work.imageUrl;
+    figcaption.textContent = work.title;
+    figure.classList.add("#gallery");
+    galleryModal.appendChild(figure);
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+  });
+}
+
+
+/*fonction permettant d'afficher les travaux/works dans le DOM*/
+/*
+async function displayWorksModal() {
+  const arrayWorksModal = await getWorksModal ();
+  arrayWorksModal.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+    img.src = work.imageUrl;
+    figcaption.textContent = work.title;
+    figure.classList.add("#gallery");
+    galleryModal.appendChild(figure);
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+  });
+}
+getWorksModal();
+displayWorksModal();
