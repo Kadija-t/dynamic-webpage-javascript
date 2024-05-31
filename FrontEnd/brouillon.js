@@ -21,5 +21,8 @@ OK
 // 4. creer et afficher modale
 
 
- ! OK => améliorer design+ images styles + incone supprimer
-bouton modifier et modale que si co 
+OK => améliorer design + images styles
+
+//  6. oprtion supprimer un work 
+
+OK

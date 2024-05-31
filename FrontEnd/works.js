@@ -120,25 +120,32 @@ async function hideFilters() {
   const filtersToHide = document.getElementById("categories-picture");
   const banner = document.getElementById("banner");
   const token = localStorage.getItem("token");
+  const updateBtn = document.getElementById("btn-modifier");
+  const updateIcon = document.getElementById("icone-modifier");
   if (token) {
     filtersToHide.style.display = "none";
+    updateBtn.style.display = "block";
+    updateIcon.style.display = "block";
     banner.style.display = "block";
   }else{
     filtersToHide.style.display = "block";
+    updateBtn.style.display = "none";
+    updateIcon.style.display = "none";
     banner.style.display = "none";
   }
 }
 
 hideFilters();
 
+// fonction permettant d'ouvrir la modal
+
 function openModal() {
-  let openBtn = document.getElementById("btn-modifier");
-  let closeModal = document.getElementById("close-modal");
-  let modal = document.getElementById("modal");
+  const openBtn = document.getElementById("btn-modifier");
+  const closeModal = document.getElementById("close-modal");
+  const modal = document.getElementById("modal");
 
   openBtn.addEventListener("click", () => {
       modal.style.display = "block";
-      // galleryModal.style.display = "block";
   });
 
   closeModal.addEventListener("click", () => {
@@ -149,7 +156,6 @@ function openModal() {
   window.addEventListener("click", (event) => {
       if (event.target == modal) {
           modal.style.display = "none";
-        
       }
   });
 }
@@ -158,7 +164,7 @@ openModal();
 
 /*afficher les works dans la modale*/
 
-async function fetchAndDisplayWorksModal() {
+async function displayWorksModal() {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
   const galleryModal = document.getElementById("gallery");
@@ -167,15 +173,41 @@ async function fetchAndDisplayWorksModal() {
       const figure = document.createElement("figure");
       const img = document.createElement("img");
       const figcaption = document.createElement("figcaption");
+      const deleteIcon = document.createElement("i");
+
+      deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon")
 
       img.src = work.imageUrl;
-      img.alt = work.title;
-      figcaption.textContent = work.title;
+      // Suppression des works selectionnés
+
+      deleteIcon.addEventListener("click", async () => {
+      if(confirm('Etes-vous sûr de vouloir supprimer cette photo?')){
+
+      try {
+        const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (response.ok) {
+          figure.remove();
+        } else {
+          throw new Error("La suppression de l'élément a échoué");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la suppression de l'élément :", error.message);
+        alert("Une erreur est survenue lors de la suppression.");
+      }
+    }
+  });
 
       figure.appendChild(img);
+      figure.appendChild(deleteIcon);
       figure.appendChild(figcaption);
       galleryModal.appendChild(figure);
   });
 }
 
-fetchAndDisplayWorksModal();
+displayWorksModal();
