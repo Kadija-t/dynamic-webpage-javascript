@@ -21,7 +21,7 @@ OK
 // 4. creer et afficher modale
 
 
-OK => améliorer design + images styles
+OK 
 
 //  6. oprtion supprimer un work 
 
