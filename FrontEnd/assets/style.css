@@ -450,3 +450,19 @@ button {
 	box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
 	margin-bottom: 8px;
   }
+
+#form-preview {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#preview-image {
+	background-color: #fefefe;
+	margin: 15% auto;
+	width:40%;
+	height: auto;
+	max-width: 400px;
+	max-height: 80%;
+	padding: 40px 80px;
+	border: 1px solid #888; 
+}

@@ -235,13 +235,43 @@ async function displayWorksModal(data) {
   });
 }
 
-
 const addModal = document.getElementById("modal-form");
 const closeAddModal = document.getElementById("close-form");
 const addBtn = document.getElementById("btn-add");
 const galleryModal = document.getElementById("gallery");
 
 const form = document.querySelector("#form-modal");
+
+// Preview image before sending the form
+
+document.addEventListener("DOMContentLoaded", function() {
+  const imageInput = document.querySelector(".image");
+  const previewImage = document.getElementById("preview-image");
+  
+  imageInput.addEventListener("change", function() {
+      const file = this.files[0];
+      
+      if (file) {
+          const reader = new FileReader();
+          
+          reader.onload = (e) => {
+              previewImage.src = e.target.result;
+          };
+          
+          reader.readAsDataURL(file);
+      } else {
+          previewImage.src = "#";
+      }
+  });
+});
+
+// category key-value
+
+const categoryId = {
+  "Objets": 1,
+  "Appartements": 2,
+  "Hôtels & Restaurants": 3
+};
 
 closeAddModal.addEventListener("click", () => {
     addModal.style.display = "none";
@@ -253,10 +283,13 @@ form.addEventListener("submit", (e) => {
 
     const title = document.getElementById("title").value;
     const image = document.querySelector(".image").files[0];
-    const category = document.getElementById("category").value;
+    const categoryValue = document.getElementById("category").value;
+    const category = categoryId[categoryValue];
+
+    if (!validateForm(title, image, categoryValue)) return;
 
     console.log("Form submitted with:", { title, image, category });
-
+    
 
     addModal.style.display = "block";
     galleryModal.style.display = "none";
@@ -289,3 +322,31 @@ form.addEventListener("submit", (e) => {
             alert("Une erreur est survenue lors de l'ajout.");
         });
 });
+
+// function to check and validate the form fields
+
+function validateForm(title, image, categoryValue) {
+  const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  let errorMessage = "";
+
+  if (!title) {
+      errorMessage += "Le titre est requis.";
+  }
+
+  if (!image) {
+      errorMessage += "L'image est requise.";
+  } else if (!validImageTypes.includes(image.type)) {
+      errorMessage += "Le format de l'image doit être jpg, jpeg ou png.";
+  }
+
+  if (!categoryValue) {
+      errorMessage += "La catégorie est requise.";
+  }
+
+  if (errorMessage) {
+      alert(errorMessage);
+      return false;
+  }
+
+  return true;
+}
