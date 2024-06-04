@@ -151,35 +151,51 @@ function openModal() {
   const openAddBtn = document.getElementById("btn-add");
   const closeAddModal = document.getElementById("close-form");
   const addModal = document.getElementById("modal-form");
+  const hiddenForm = document.getElementById("hidden-form");
 
   openBtn.addEventListener("click", () => {
     modal.style.display = "block";
-    addModal.style.display = "none";
+    hiddenForm.style.display = "none";
   });
+
   closeModal.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
   openAddBtn.addEventListener("click", () => {
-    addModal.style.display = "block";
-    // modal.style.display = "none";
+    // Clear the content of the modal
+    const modalContent = document.querySelector("#modal .content");
+    if (modalContent) {
+      modalContent.innerHTML = "";
+    }
+
+    // Display the hidden form inside the modal
+    hiddenForm.style.display = "block";
+    modal.innerHTML = "";
+    modal.appendChild(hiddenForm);
+
+    // Show the modal
+    hiddenForm.querySelector('.modal').style.display = "block";
   });
 
   closeAddModal.addEventListener("click", () => {
-    addModal.style.display = "none";
-    // modal.style.display ="block"
+    hiddenForm.style.display = "none";
+    hiddenForm.querySelector('.modal').style.display = "none";
   });
 
   window.addEventListener("click", (event) => {
     if (event.target == modal) {
       modal.style.display = "none";
     } else if (event.target == addModal) {
-      addModal.style.display = "none";
+      hiddenForm.style.display = "none";
+      hiddenForm.querySelector('.modal').style.display = "none";
     }
   });
 }
 
 openModal();
+
+
 
 /*afficher les works dans la modale*/
 
@@ -248,22 +264,43 @@ document.addEventListener("DOMContentLoaded", function() {
   const imageInput = document.querySelector(".image");
   const previewImage = document.getElementById("preview-image");
   
-  imageInput.addEventListener("change", function() {
-      const file = this.files[0];
+  imageInput.addEventListener("change", function(event) {
+    const file = event.target.files[0]; // Récupérer le fichier sélectionné
+    
+    if (file) {
+      const reader = new FileReader();
       
-      if (file) {
-          const reader = new FileReader();
-          
-          reader.onload = (e) => {
-              previewImage.src = e.target.result;
-          };
-          
-          reader.readAsDataURL(file);
-      } else {
-          previewImage.src = "#";
-      }
+      reader.onload = function(event) {
+        previewImage.src = event.target.result; // Mettre à jour la source de l'image avec la prévisualisation de l'image sélectionnée
+      };
+      
+      reader.readAsDataURL(file); // Lire le contenu du fichier en tant que Data URL
+    } else {
+      previewImage.src = ""; // Effacer la source de l'image si aucun fichier n'est sélectionné
+    }
   });
 });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const imageInput = document.querySelector(".image");
+//   const previewImage = document.getElementById("preview-image");
+  
+//   imageInput.addEventListener("change", function() {
+//       const file = this.files[0];
+      
+//       if (file) {
+//           const reader = new FileReader();
+          
+//           reader.onload = (e) => {
+//               previewImage.src = e.target.result;
+//           };
+          
+//           reader.readAsDataURL(file);
+//       } else {
+//           previewImage.src = "#";
+//       }
+//   });
+// });
 
 // category key-value
 
@@ -350,3 +387,33 @@ function validateForm(title, image, categoryValue) {
 
   return true;
 }
+
+// Reset the form after submission
+
+function resetForm() {
+  const form = document.querySelector("#form-modal");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    form.reset();
+    document.querySelectorAll('input').forEach(input => input.value = '');
+    document.getElementById('preview-image').src = "https://bit.ly/3ubuq5o" ; 
+  });
+}
+
+resetForm();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const addImgBtn = document.getElementById("btn-add");
+  const formModalContainer = document.getElementById("form-modal");
+  const hiddenForm = document.getElementById("hidden-form");
+
+  addImgBtn.addEventListener("click", () => {
+      // Clone hidden form 
+      const clonedForm = hiddenForm.cloneNode(true);
+      // Display cloned form in the modal container
+      formModalContainer.innerHTML = ""; // Clear previous content
+      formModalContainer.appendChild(clonedForm);
+      formModalContainer.style.display = "block";
+  });
+});
