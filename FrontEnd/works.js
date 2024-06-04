@@ -53,12 +53,17 @@ async function getWorks(categoryId = 0) {
     const response = await fetch("http://localhost:5678/api/works");
     const data = await response.json();
     const gallery = document.querySelector(".gallery");
+    const galleryModal = document.getElementById("gallery");
+
     gallery.innerHTML = "";
+    galleryModal.innerHTML = "";
+
+    displayWorksModal(data);
     const filterData = data.filter(
       (work) => work.categoryId === Number(categoryId) || categoryId === 0
     );
 
-      const figures = filterData.map(({ id, imageUrl, title }) => {
+    const figures = filterData.map(({ id, imageUrl, title }) => {
       const figure = document.createElement("figure");
 
       figure.dataset.id = id;
@@ -99,20 +104,19 @@ async function editMode() {
     connection.style.display = "block";
     login.style.display = "none";
     logout.style.display = "block";
-  }else{
+  } else {
     login.style.display = "block";
     logout.style.display = "none";
     connection.style.display = "none";
   }
 }
 
-
 logout.addEventListener("click", () => {
   localStorage.removeItem("token");
-  if(token){
+  if (token) {
     logout.style.display = "none";
   }
-})
+});
 
 editMode();
 
@@ -127,7 +131,7 @@ async function hideFilters() {
     updateBtn.style.display = "block";
     updateIcon.style.display = "block";
     banner.style.display = "block";
-  }else{
+  } else {
     filtersToHide.style.display = "block";
     updateBtn.style.display = "none";
     updateIcon.style.display = "none";
@@ -144,19 +148,34 @@ function openModal() {
   const closeModal = document.getElementById("close-modal");
   const modal = document.getElementById("modal");
 
+  const openAddBtn = document.getElementById("btn-add");
+  const closeAddModal = document.getElementById("close-form");
+  const addModal = document.getElementById("modal-form");
+
   openBtn.addEventListener("click", () => {
-      modal.style.display = "block";
+    modal.style.display = "block";
+    addModal.style.display = "none";
+  });
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
   });
 
-  closeModal.addEventListener("click", () => {
-      modal.style.display = "none";
-      
+  openAddBtn.addEventListener("click", () => {
+    addModal.style.display = "block";
+    // modal.style.display = "none";
+  });
+
+  closeAddModal.addEventListener("click", () => {
+    addModal.style.display = "none";
+    // modal.style.display ="block"
   });
 
   window.addEventListener("click", (event) => {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
+    if (event.target == modal) {
+      modal.style.display = "none";
+    } else if (event.target == addModal) {
+      addModal.style.display = "none";
+    }
   });
 }
 
@@ -164,50 +183,109 @@ openModal();
 
 /*afficher les works dans la modale*/
 
-async function displayWorksModal() {
-  const response = await fetch("http://localhost:5678/api/works");
-  const data = await response.json();
+async function displayWorksModal(data) {
+  //const response = await fetch("http://localhost:5678/api/works");
+  //const data = await response.json();
   const galleryModal = document.getElementById("gallery");
 
   data.forEach((work) => {
-      const figure = document.createElement("figure");
-      const img = document.createElement("img");
-      const figcaption = document.createElement("figcaption");
-      const deleteIcon = document.createElement("i");
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+    const deleteIcon = document.createElement("i");
 
-      deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon")
+    deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
 
-      img.src = work.imageUrl;
-      // Suppression des works selectionnés
+    img.src = work.imageUrl;
+    // Suppression des works selectionnés
 
-      deleteIcon.addEventListener("click", async () => {
-      if(confirm('Etes-vous sûr de vouloir supprimer cette photo?')){
+    deleteIcon.addEventListener("click", async () => {
+      if (confirm("Etes-vous sûr de vouloir supprimer cette photo?")) {
+        try {
+          const response = await fetch(
+            `http://localhost:5678/api/works/${work.id}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
 
-      try {
-        const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-
-        if (response.ok) {
-          figure.remove();
-        } else {
-          throw new Error("La suppression de l'élément a échoué");
+          if (response.ok) {
+            // figure.remove();
+            getWorks();
+          } else {
+            throw new Error("La suppression de l'élément a échoué");
+          }
+        } catch (error) {
+          console.error(
+            "Erreur lors de la suppression de l'élément :",
+            error.message
+          );
+          alert("Une erreur est survenue lors de la suppression.");
         }
-      } catch (error) {
-        console.error("Erreur lors de la suppression de l'élément :", error.message);
-        alert("Une erreur est survenue lors de la suppression.");
       }
-    }
-  });
+    });
 
-      figure.appendChild(img);
-      figure.appendChild(deleteIcon);
-      figure.appendChild(figcaption);
-      galleryModal.appendChild(figure);
+    figure.appendChild(img);
+    figure.appendChild(deleteIcon);
+    figure.appendChild(figcaption);
+    galleryModal.appendChild(figure);
   });
 }
 
-displayWorksModal();
+
+const addModal = document.getElementById("modal-form");
+const closeAddModal = document.getElementById("close-form");
+const addBtn = document.getElementById("btn-add");
+const galleryModal = document.getElementById("gallery");
+
+const form = document.querySelector("#form-modal");
+
+closeAddModal.addEventListener("click", () => {
+    addModal.style.display = "none";
+    galleryModal.style.display = "flex";
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const image = document.querySelector(".image").files[0];
+    const category = document.getElementById("category").value;
+
+    console.log("Form submitted with:", { title, image, category });
+
+
+    addModal.style.display = "block";
+    galleryModal.style.display = "none";
+
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("image", image);
+    formData.append("category", category);
+
+    fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Une erreur est survenue lors de l'ajout.");
+            }
+        })
+        .then(() => {
+            getWorks();
+        })
+        .catch((error) => {
+            console.error("Erreur lors de l'ajout de l'élément :", error);
+            alert("Une erreur est survenue lors de l'ajout.");
+        });
+});

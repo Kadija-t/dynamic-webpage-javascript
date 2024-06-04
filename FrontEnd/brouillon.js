@@ -26,3 +26,10 @@ OK
 //  6. oprtion supprimer un work 
 
 OK
+
+// 7. option editer un work
+
+Mise en place modale => design et inputs a travailler
+
+
+

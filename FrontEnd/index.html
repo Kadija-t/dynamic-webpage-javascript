@@ -72,9 +72,39 @@
           <div id="gallery"></div>
           </div>
           <hr />
-            <button class="ajouter-photo">Ajouter une photo</button>
+            <button id="btn-add">Ajouter une photo</button>
+            <div id="modal-form" class="modal">
+              <div class="content-form">
+               <div id="close-form" ><i class="fa-solid fa-xmark"></i></div>
+                <form id="form-modal" action="">
+                  <h3>Ajout photo</h3>
+                  <label for="image">Image</label>
+                  <input class="image" name="image" type="file" required>
+                  <label for="title">Titre</label>
+                  <input id="title" name="title" type="text" required>
+                  <label for="category">Catégorie</label>
+                  <select id="category" name="category" required>
+                    <option value="Objets">Objets</option>
+                    <option value="Appartements">Appartements</option>
+                    <option value="Hôtels & Restaurants">Hôtels & Restaurants</option>
+                  </select>
+                  <button type="submit">Envoyer</button>
+                </form>
+              </div>
+            </div>
+            
+            <!-- <div class="modal-form" id="modal-form">
+              <div id="close-form" ><i class="fa-solid fa-xmark"></i></div>
+              <form id="form" action="">
+                 <h3>Ajout photo</h3>
+                 <label for="title">Titre</label>
+                 <input id="title" name="title" type="text" required>
+                 <label for="categpry">Catégorie</label>
+                 <input id="categpry" name="category" type="text" required>
+              </form>
+            </div>
           </div>
-          </div>
+          </div> -->
         </h2>
         <div id="categories-picture"></div>
         <div class="gallery"></div>
@@ -93,7 +123,6 @@
         </form>
       </section>
     </main>
-
     <footer>
       <nav>
         <ul>
