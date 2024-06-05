@@ -141,7 +141,7 @@ async function hideFilters() {
 
 hideFilters();
 
-// fonction permettant d'ouvrir la modal
+// function enabling to open the modal and close it/ hidden form
 
 function openModal() {
   const openBtn = document.getElementById("btn-modifier");
@@ -155,7 +155,6 @@ function openModal() {
 
   openBtn.addEventListener("click", () => {
     modal.style.display = "block";
-    hiddenForm.style.display = "none";
   });
 
   closeModal.addEventListener("click", () => {
@@ -163,45 +162,30 @@ function openModal() {
   });
 
   openAddBtn.addEventListener("click", () => {
-    // Clear the content of the modal
-    const modalContent = document.querySelector("#modal .content");
-    if (modalContent) {
-      modalContent.innerHTML = "";
-    }
-
-    // Display the hidden form inside the modal
     hiddenForm.style.display = "block";
-    modal.innerHTML = "";
-    modal.appendChild(hiddenForm);
-
-    // Show the modal
-    hiddenForm.querySelector('.modal').style.display = "block";
+    addModal.style.display = "block";
   });
 
   closeAddModal.addEventListener("click", () => {
     hiddenForm.style.display = "none";
-    hiddenForm.querySelector('.modal').style.display = "none";
+    addModal.style.display = "none";
   });
 
   window.addEventListener("click", (event) => {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
-    } else if (event.target == addModal) {
+    } else if (event.target === addModal) {
       hiddenForm.style.display = "none";
-      hiddenForm.querySelector('.modal').style.display = "none";
+      addModal.style.display = "block";
     }
   });
 }
-
 openModal();
 
 
-
-/*afficher les works dans la modale*/
+/*displaying works in the modal*/
 
 async function displayWorksModal(data) {
-  //const response = await fetch("http://localhost:5678/api/works");
-  //const data = await response.json();
   const galleryModal = document.getElementById("gallery");
 
   data.forEach((work) => {
@@ -229,7 +213,6 @@ async function displayWorksModal(data) {
           );
 
           if (response.ok) {
-            // figure.remove();
             getWorks();
           } else {
             throw new Error("La suppression de l'élément a échoué");
@@ -260,47 +243,27 @@ const form = document.querySelector("#form-modal");
 
 // Preview image before sending the form
 
+
 document.addEventListener("DOMContentLoaded", function() {
   const imageInput = document.querySelector(".image");
   const previewImage = document.getElementById("preview-image");
   
-  imageInput.addEventListener("change", function(event) {
-    const file = event.target.files[0]; // Récupérer le fichier sélectionné
-    
-    if (file) {
-      const reader = new FileReader();
+  imageInput.addEventListener("change", function() {
+      const file = this.files[0];
       
-      reader.onload = function(event) {
-        previewImage.src = event.target.result; // Mettre à jour la source de l'image avec la prévisualisation de l'image sélectionnée
-      };
-      
-      reader.readAsDataURL(file); // Lire le contenu du fichier en tant que Data URL
-    } else {
-      previewImage.src = ""; // Effacer la source de l'image si aucun fichier n'est sélectionné
-    }
+      if (file) {
+          const reader = new FileReader();
+          
+          reader.onload = (e) => {
+              previewImage.src = e.target.result;
+          };
+          
+          reader.readAsDataURL(file);
+      } else {
+          previewImage.src = "#";
+      }
   });
 });
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   const imageInput = document.querySelector(".image");
-//   const previewImage = document.getElementById("preview-image");
-  
-//   imageInput.addEventListener("change", function() {
-//       const file = this.files[0];
-      
-//       if (file) {
-//           const reader = new FileReader();
-          
-//           reader.onload = (e) => {
-//               previewImage.src = e.target.result;
-//           };
-          
-//           reader.readAsDataURL(file);
-//       } else {
-//           previewImage.src = "#";
-//       }
-//   });
-// });
 
 // category key-value
 
@@ -403,17 +366,17 @@ function resetForm() {
 
 resetForm();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const addImgBtn = document.getElementById("btn-add");
-  const formModalContainer = document.getElementById("form-modal");
-  const hiddenForm = document.getElementById("hidden-form");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const addImgBtn = document.getElementById("btn-add");
+//   const formModalContainer = document.getElementById("form-modal");
+//   const hiddenForm = document.getElementById("hidden-form");
 
-  addImgBtn.addEventListener("click", () => {
-      // Clone hidden form 
-      const clonedForm = hiddenForm.cloneNode(true);
-      // Display cloned form in the modal container
-      formModalContainer.innerHTML = ""; // Clear previous content
-      formModalContainer.appendChild(clonedForm);
-      formModalContainer.style.display = "block";
-  });
-});
+//   addImgBtn.addEventListener("click", () => {
+//       // Clone hidden form 
+//       const clonedForm = hiddenForm.cloneNode(true);
+//       // Display cloned form in the modal container
+//       formModalContainer.innerHTML = ""; // Clear previous content
+//       formModalContainer.appendChild(clonedForm);
+//       formModalContainer.style.display = "block";
+//   });
+// });
