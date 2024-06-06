@@ -57,7 +57,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 150px;
-	
+
 }
 section {
 	margin: 20px 0
@@ -133,10 +133,10 @@ li:hover {
 
 .gallery {
 	width: 100%;
-	display: grid; 
+	display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
-	grid-row-gap: 20px; 
+	grid-row-gap: 20px;
 	object-fit: cover;
 }
 
@@ -153,7 +153,7 @@ li:hover {
 	object-fit: cover;
 	overflow: hidden;
 	box-sizing: border-box;
-	
+
 }
 
 #contact {
@@ -207,7 +207,7 @@ footer nav ul {
 
 .filter-option {
 	background:white;
-	color: rgb(29, 97, 84); 
+	color: rgb(29, 97, 84);
 	border:1px solid rgb(29, 97, 84);
 	padding-right:15px;
 	padding-left:15px;
@@ -278,7 +278,7 @@ footer nav ul {
 #email {
 	margin-top: 10px;
 	margin-bottom: 10px;
-} 
+}
 
 #password {
 	margin-top: 10px;
@@ -349,7 +349,7 @@ section #banner{
 	height: 100%;
 	background-color: black;
 	padding-bottom: 20px;
-	padding-left: 700px; 
+	padding-left: 700px;
 	justify-content: center;
 	padding-top: 20px;
 	color: aliceblue;
@@ -361,14 +361,14 @@ section #banner{
 
 .modal {
 	display: none;
-	position: fixed; 
-	z-index: 2; 
+	position: fixed;
+	z-index: 2;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	overflow: auto; 
-	background-color: rgba(0,0,0,0.4); 	
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
@@ -380,7 +380,7 @@ section #banner{
 	max-width: 400px;
 	max-height: 80%;
 	padding: 50px 80px;
-	border: 1px solid #888; 
+	border: 1px solid #888;
 }
 
 #close-modal {
@@ -454,168 +454,178 @@ button {
 /* code to work */
 
 .modal-form {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
-	display: none; 
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: white;
-	font-size: medium;
-	border: 1px solid transparent;
-	box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
-	padding: 40px 80px;
-	width: 50%; 
-	max-width: 600px; 
-	height: 50%; 
-	max-height: 80%;
-	box-sizing: border-box; 
-	overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-size: medium;
+    border: 1px solid transparent;
+    box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
+    padding: 20px;
+    width: 50%;
+    max-width: 600px;
+    height: 80%;
+    max-height: 80%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.content-form {
-	background-color: #fefefe;
-	width: 100%;
-	padding: 40px;
-	box-sizing: border-box;
+#form-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.content-form { 
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    position: relative;
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #modal-form {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-	display: none; 
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: white;
-	font-size: medium;
-	border: 1px solid transparent;
-	box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
-	padding: 10px 10px; 
-	margin: 10px 10px;
-	width: 50%;
-	max-width: 600px; 
-	height: 70%;
-	max-height: 80%;
-	box-sizing: border-box; 
-	overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-size: medium;
+    border: 1px solid transparent;
+    box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
+    padding: 10px;
+    width: 50%;
+    max-width: 600px;
+    height: 90%;
+    max-height: 90%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-#modal-form input,
-#modal-form select {
-	width: 70%;
-	height: 50%;
-	margin-bottom: 20px;
-}
-#modal-form input {
-	width: 70%;
-	height: 50%;
-}
-#modal-form label {
-	width: 100%;
-	margin-bottom: 10px;
+#form-modal h3 {
+    font-size: medium;
+    margin-bottom: 10px;
 }
 
 #close-modal {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-	color: black;
-} 
-
-#form-preview h3 {
-	width: 60%;
-	font-size: small;
-	margin-bottom: 10px;
-	margin-top: 10px;
-  }
-  
-#preview-image {
-	max-width: 40%;
-	height: auto;
-	margin-left: 100px;
-	margin-bottom: 10px;
-	object-fit: cover; 
-  }
-/* #form-preview h3 {
-	width: 70%;
-	font-size: small;
-	margin-bottom: 10px;
-}
-
-#preview-image {
-	width: 60%;
-	height: auto;
-	margin-left: 100px;
-	margin-bottom: 10px;
-	object-fit: cover; 
-} */
-
-#modal-form button {
-	width: 60%;
-	margin-left: 70px;
-}
-
-.image-form {
-    position: relative;
-}
-
-.image-form button,
-.image-form p {
     position: absolute;
-    bottom: 10px; 
-    left: 50%;
-    transform: translateX(-50%);
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: black;
 }
 
-/* Cacher le champ de téléchargement de fichier */
-.file-upload input[type="file"] {
-	display: none; 
-  }
-  
-  .file-upload {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	overflow: hidden;
-  }
-  
-  .file-upload input[type="file"] {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	cursor: pointer;
-  }
-  
-  .file-upload span {
-	display: inline-block;
-	padding: 10px 15px;
-	background-color: gray;
-	color: #fff;
-	border-radius: 5px;
-  }
-  
-  .file-upload input[type="file"]::-webkit-file-upload-button {
-	visibility: hidden;
-  }
-  
-  .image-form {
-	position: relative;
-  }
+.preview-image {
+    position: relative;
+    width: 80%;
+    height: 35%;
+    margin: 10px 0;
+    object-fit: cover;
+    background-color: rgb(232, 241, 246);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-  .file-upload p {
-	text-align: center;
-	color: #555;
-	font-size: 14px;
-  }
-  
+.icon-img {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    font-size: 5em;
+	color: rgb(167, 167, 167);
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.file-upload-button {
+	background-color: rgb(167, 167, 167);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: inline-block;
+	border-radius: 20px;
+	border: px solid rgb(167, 167, 167);
+	margin-bottom: 5px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+#preview {
+	max-width: 40%;
+	max-height: 100%;
+}
+#form-modal input,
+#form-modal select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#form-modal label {
+    width: 70%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#form-modal button {
+    width: 70%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(167, 167, 167);
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-self: center;
+    text-align: center;
+}
+
+#form-modal button:hover {
+    background-color:  rgb(29, 97, 84) ;
+}
+
+
+/* handling preview section display */
+

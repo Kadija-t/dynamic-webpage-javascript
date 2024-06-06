@@ -197,7 +197,8 @@ async function displayWorksModal(data) {
     deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
 
     img.src = work.imageUrl;
-    // Suppression des works selectionnés
+
+    // Deleting delected works
 
     deleteIcon.addEventListener("click", async () => {
       if (confirm("Etes-vous sûr de vouloir supprimer cette photo?")) {
@@ -244,9 +245,14 @@ const form = document.querySelector("#form-modal");
 // Preview image before sending the form
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
   const imageInput = document.querySelector(".image");
-  const previewImage = document.getElementById("preview-image");
+  const previewImage = document.getElementById("preview");
+  const iconImg = document.getElementById("icon-image");
+  const uploadButton = document.querySelector(".file-upload-button");
+  const uploadInfo = document.querySelector(".file-upload p");
+  
   
   imageInput.addEventListener("change", function() {
       const file = this.files[0];
@@ -255,15 +261,27 @@ document.addEventListener("DOMContentLoaded", function() {
           const reader = new FileReader();
           
           reader.onload = (e) => {
+              iconImg.style.display ="none";
+              previewImage.style.display ="block";
+              uploadButton.style.display = "none";
+              uploadInfo.style.display = "none";
               previewImage.src = e.target.result;
           };
           
           reader.readAsDataURL(file);
       } else {
-          previewImage.src = "#";
+        iconImg.style.display ="block";
+        previewImage.style.display ="none";
+        uploadButton.style.display = "block";
+        uploadInfo.style.display = "block";
       }
   });
 });
+
+
+// gray-green button if filled form
+
+
 
 // category key-value
 
@@ -315,7 +333,11 @@ form.addEventListener("submit", (e) => {
             }
         })
         .then(() => {
-            getWorks();
+          // clear tes inputs
+          title.value = "";
+          image.value = null;
+          category.value = '';
+          getWorks();
         })
         .catch((error) => {
             console.error("Erreur lors de l'ajout de l'élément :", error);
@@ -348,6 +370,7 @@ function validateForm(title, image, categoryValue) {
       return false;
   }
 
+  console.log(errorMessage)
   return true;
 }
 
@@ -355,28 +378,13 @@ function validateForm(title, image, categoryValue) {
 
 function resetForm() {
   const form = document.querySelector("#form-modal");
+  const iconImg = document.getElementById("icon-image")
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     form.reset();
     document.querySelectorAll('input').forEach(input => input.value = '');
-    document.getElementById('preview-image').src = "https://bit.ly/3ubuq5o" ; 
+    document.getElementById('preview').src = iconImg; 
   });
 }
-
 resetForm();
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const addImgBtn = document.getElementById("btn-add");
-//   const formModalContainer = document.getElementById("form-modal");
-//   const hiddenForm = document.getElementById("hidden-form");
-
-//   addImgBtn.addEventListener("click", () => {
-//       // Clone hidden form 
-//       const clonedForm = hiddenForm.cloneNode(true);
-//       // Display cloned form in the modal container
-//       formModalContainer.innerHTML = ""; // Clear previous content
-//       formModalContainer.appendChild(clonedForm);
-//       formModalContainer.style.display = "block";
-//   });
-// });
