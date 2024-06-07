@@ -164,6 +164,7 @@ function openModal() {
   openAddBtn.addEventListener("click", () => {
     hiddenForm.style.display = "block";
     addModal.style.display = "block";
+    modal.style.display = "none";
   });
 
   closeAddModal.addEventListener("click", () => {
@@ -171,12 +172,19 @@ function openModal() {
     addModal.style.display = "none";
   });
 
+  // addModal.addEventListener("click", (event) => {
+  //   if (event.target === addModal) {
+  //       hiddenForm.style.display = "none";
+  //       addModal.style.display = "none";
+  //   }
+  // });
+
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
     } else if (event.target === addModal) {
       hiddenForm.style.display = "none";
-      addModal.style.display = "block";
+      addModal.style.display = "none";
     }
   });
 }
@@ -279,17 +287,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// gray-green button if filled form
-
-
-
-// category key-value
+// category key-value -declaring categories
 
 const categoryId = {
   "Objets": 1,
   "Appartements": 2,
   "Hôtels & Restaurants": 3
 };
+
+// const selectElement = document.getElementById("category");
+
+// for (const [category, id] of Object.entries(categoryId)) {
+//   const option = document.createElement("option");
+//   option.value = id;
+//   option.textContent = category;
+//   selectElement.appendChild(option);
+// }
 
 closeAddModal.addEventListener("click", () => {
     addModal.style.display = "none";
@@ -378,13 +391,39 @@ function validateForm(title, image, categoryValue) {
 
 function resetForm() {
   const form = document.querySelector("#form-modal");
-  const iconImg = document.getElementById("icon-image")
+  const iconImg = document.getElementById("icon-image");
+  const btnForm = document.getElementById("btn-form");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     form.reset();
     document.querySelectorAll('input').forEach(input => input.value = '');
-    document.getElementById('preview').src = iconImg; 
+    document.getElementById('preview').src = iconImg;
+    document.getElementById('btn-form').style.backgroundColor = "gray";  
   });
 }
 resetForm();
+
+// gray-green button form
+
+function colorBtnForm() {
+  const btnForm = document.getElementById("btn-form");
+  const image = document.getElementById("image");
+  const titleInput = document. getElementById("title");
+  const categoryInput = document. getElementById("category");
+
+   function checkFields () {
+    if (titleInput.value && categoryInput.value && image.files.length > 0) {
+      btnForm.style.backgroundColor = 'green';
+    } else {
+      btnForm.style.backgroundColor = 'gray';
+    }
+   }
+image.addEventListener("change", checkFields);
+titleInput.addEventListener("input", checkFields);
+categoryInput.addEventListener("change", checkFields);
+
+checkFields()
+}
+
+colorBtnForm();
