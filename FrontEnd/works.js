@@ -172,12 +172,6 @@ function openModal() {
     addModal.style.display = "none";
   });
 
-  // addModal.addEventListener("click", (event) => {
-  //   if (event.target === addModal) {
-  //       hiddenForm.style.display = "none";
-  //       addModal.style.display = "none";
-  //   }
-  // });
 
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
@@ -187,9 +181,29 @@ function openModal() {
       addModal.style.display = "none";
     }
   });
+  
 }
 openModal();
 
+
+
+
+ 
+// category key-value -declaring categories
+
+const categoryId = {
+  "Objets": 1,
+  "Appartements": 2,
+  "Hôtels & Restaurants": 3
+};
+
+// adding option for each category and using category id as value
+
+Object.keys(categoryId).forEach(category => {
+  const option = document.createElement("option");
+  option.value = categoryId[category];
+  option.textContent = category;
+});
 
 /*displaying works in the modal*/
 
@@ -252,8 +266,6 @@ const form = document.querySelector("#form-modal");
 
 // Preview image before sending the form
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
   const imageInput = document.querySelector(".image");
   const previewImage = document.getElementById("preview");
@@ -286,24 +298,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-// category key-value -declaring categories
-
-const categoryId = {
-  "Objets": 1,
-  "Appartements": 2,
-  "Hôtels & Restaurants": 3
-};
-
-// const selectElement = document.getElementById("category");
-
-// for (const [category, id] of Object.entries(categoryId)) {
-//   const option = document.createElement("option");
-//   option.value = id;
-//   option.textContent = category;
-//   selectElement.appendChild(option);
-// }
-
 closeAddModal.addEventListener("click", () => {
     addModal.style.display = "none";
     galleryModal.style.display = "flex";
@@ -316,6 +310,8 @@ form.addEventListener("submit", (e) => {
     const image = document.querySelector(".image").files[0];
     const categoryValue = document.getElementById("category").value;
     const category = categoryId[categoryValue];
+
+//validating  the form
 
     if (!validateForm(title, image, categoryValue)) return;
 
@@ -357,6 +353,7 @@ form.addEventListener("submit", (e) => {
             alert("Une erreur est survenue lors de l'ajout.");
         });
 });
+
 
 // function to check and validate the form fields
 
@@ -404,7 +401,7 @@ function resetForm() {
 }
 resetForm();
 
-// gray-green button form
+// gray-green button form when filling all the fields
 
 function colorBtnForm() {
   const btnForm = document.getElementById("btn-form");
@@ -427,3 +424,6 @@ checkFields()
 }
 
 colorBtnForm();
+
+// closing modal with the form if clicking anywhere outside it 
+
