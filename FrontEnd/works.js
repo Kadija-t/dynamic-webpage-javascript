@@ -434,5 +434,3 @@ checkFields()
 }
 
 colorBtnForm();
-
-// closing modal with the form if clicking anywhere outside it 
