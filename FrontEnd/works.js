@@ -152,6 +152,7 @@ function openModal() {
   const closeAddModal = document.getElementById("close-form");
   const addModal = document.getElementById("modal-form");
   const hiddenForm = document.getElementById("hidden-form");
+  const body = document.body;
 
   openBtn.addEventListener("click", () => {
     modal.style.display = "block";
@@ -172,23 +173,23 @@ function openModal() {
     addModal.style.display = "none";
   });
 
+  //to do => cibler le bon element pour fermer la modale
 
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
-    } else if (event.target === addModal) {
+    } else if (event.target === addModal){
+      hiddenForm.style.display = "none";
+      addModal.style.display = "none";
+    } else if (event.target === hiddenForm){
       hiddenForm.style.display = "none";
       addModal.style.display = "none";
     }
   });
   
 }
-openModal();
+openModal()
 
-
-
-
- 
 // category key-value -declaring categories
 
 const categoryId = {
@@ -199,11 +200,11 @@ const categoryId = {
 
 // adding option for each category and using category id as value
 
-Object.keys(categoryId).forEach(category => {
-  const option = document.createElement("option");
-  option.value = categoryId[category];
-  option.textContent = category;
-});
+// Object.keys(categoryId).forEach(category => {
+//   const option = document.createElement("option");
+//   option.value = categoryId[category];
+//   option.textContent = category;
+// });
 
 /*displaying works in the modal*/
 
@@ -220,7 +221,7 @@ async function displayWorksModal(data) {
 
     img.src = work.imageUrl;
 
-    // Deleting delected works
+    // Deleting deleted works
 
     deleteIcon.addEventListener("click", async () => {
       if (confirm("Etes-vous sûr de vouloir supprimer cette photo?")) {
@@ -265,7 +266,6 @@ const galleryModal = document.getElementById("gallery");
 const form = document.querySelector("#form-modal");
 
 // Preview image before sending the form
-
 document.addEventListener("DOMContentLoaded", function() {
   const imageInput = document.querySelector(".image");
   const previewImage = document.getElementById("preview");
@@ -273,6 +273,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const uploadButton = document.querySelector(".file-upload-button");
   const uploadInfo = document.querySelector(".file-upload p");
   
+  iconImg.style.display = "block";
+  previewImage.classList.add("hidden");
   
   imageInput.addEventListener("change", function() {
       const file = this.files[0];
@@ -281,8 +283,8 @@ document.addEventListener("DOMContentLoaded", function() {
           const reader = new FileReader();
           
           reader.onload = (e) => {
-              iconImg.style.display ="none";
-              previewImage.style.display ="block";
+              iconImg.style.display = "none";
+              previewImage.classList.remove("hidden");
               uploadButton.style.display = "none";
               uploadInfo.style.display = "none";
               previewImage.src = e.target.result;
@@ -290,27 +292,27 @@ document.addEventListener("DOMContentLoaded", function() {
           
           reader.readAsDataURL(file);
       } else {
-        iconImg.style.display ="block";
-        previewImage.style.display ="none";
-        uploadButton.style.display = "block";
-        uploadInfo.style.display = "block";
+          iconImg.style.display = "block";
+          previewImage.classList.add("hidden");
+          uploadButton.style.display = "block";
+          uploadInfo.style.display = "block";
       }
   });
 });
 
 closeAddModal.addEventListener("click", () => {
-    addModal.style.display = "none";
-    galleryModal.style.display = "flex";
+  addModal.style.display = "none";
+  galleryModal.style.display = "flex";
 });
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const title = document.getElementById("title").value;
-    const image = document.querySelector(".image").files[0];
-    const categoryValue = document.getElementById("category").value;
-    const category = categoryId[categoryValue];
-
+  const title = document.getElementById("title").value;
+  const image = document.querySelector(".image").files[0];
+  const categoryValue = document.getElementById("category").value;
+  const category = categoryId[categoryValue];
+  
 //validating  the form
 
     if (!validateForm(title, image, categoryValue)) return;
@@ -411,7 +413,7 @@ function colorBtnForm() {
 
    function checkFields () {
     if (titleInput.value && categoryInput.value && image.files.length > 0) {
-      btnForm.style.backgroundColor = 'green';
+      btnForm.style.backgroundColor = 'rgb(29, 97, 84)';
     } else {
       btnForm.style.backgroundColor = 'gray';
     }
@@ -426,4 +428,3 @@ checkFields()
 colorBtnForm();
 
 // closing modal with the form if clicking anywhere outside it 
-

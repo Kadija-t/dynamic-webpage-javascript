@@ -368,7 +368,7 @@ section #banner{
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.4); 
 }
 
 .modal-content {
@@ -451,15 +451,24 @@ button {
 	border: 8px solid rgb(29, 97, 84);
 }
 
-/* code to work */
-
-.modal-form {
+#hidden-form {
+    display: none;
     position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); 
+}
+
+#modal-form {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
-    display: none;
+    z-index: 3;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -469,9 +478,8 @@ button {
     box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
     padding: 20px;
     width: 50%;
-    max-width: 600px;
-    height: 80%;
-    max-height: 80%;
+    max-width: 500px;
+    height: auto;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -486,18 +494,6 @@ button {
     box-sizing: border-box;
 }
 
-#modal {
-    display: none;
-    position: fixed;
-    z-index: 2;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
 .content-form { 
     width: 100%;
     height: 100%;
@@ -510,53 +506,40 @@ button {
     align-items: center;
 }
 
-#modal-form {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    font-size: medium;
-    border: 1px solid transparent;
-    box-shadow: 6px 6px 25px rgba(179, 178, 178, 0.5);
-    padding: 10px;
-    width: 50%;
-    max-width: 600px;
-    height: 90%;
-    max-height: 90%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
 #form-modal h3 {
     font-size: medium;
     margin-bottom: 10px;
+	margin-left: 50px;
 }
 
-#close-modal {
+#close-form {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: black;
+}
+
+.arrow-left{
+    position: absolute;
+    top: 5px;
+    left: 5px;
     cursor: pointer;
     color: black;
 }
 
 .preview-image {
     position: relative;
-    width: 80%;
-    height: 35%;
-    margin: 10px 0;
+    width: 90%;
+    height: 45%;
+	padding: 15px 10px;
+	margin-bottom: 10px;
     object-fit: cover;
     background-color: rgb(232, 241, 246);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;font-size: small;
 }
 
 .icon-img {
@@ -566,7 +549,7 @@ button {
     width: 50%;
     height: 50%;
     font-size: 5em;
-	color: rgb(167, 167, 167);
+	color: rgb(185, 197, 204);
 }
 
 .file-upload {
@@ -575,18 +558,20 @@ button {
     align-items: center;
     text-align: center;
     margin-top: 10px;
+	height: 100%;
 }
 
 .file-upload-button {
-	background-color: rgb(167, 167, 167);
-    color: white;
-    border: none;
+	background-color: rgb(185, 197, 204);
+    color: rgb(48, 102, 133);
     padding: 5px 10px;
     cursor: pointer;
     display: inline-block;
 	border-radius: 20px;
-	border: px solid rgb(167, 167, 167);
+	border: 1px solid rgb(185, 197, 204);
 	margin-bottom: 5px;
+	font-size: medium;
+	font-weight: 100;
 }
 
 .file-upload input[type="file"] {
@@ -599,33 +584,38 @@ button {
 }
 #form-modal input,
 #form-modal select {
-    width: 100%;
+    width: 90%;
     padding: 5px;
     margin-bottom: 10px;
+	height:40px;
+	border:none;
+	box-shadow: rgb(26, 247, 125);
+}
+label {
+	margin-left: 0px;
 }
 
 #form-modal label {
     width: 70%;
     margin-bottom: 10px;
-    text-align: left;
 }
 
 #form-modal button {
     width: 70%;
     margin-top: 20px;
+	margin-left: 10px;
+	background-color: rgb(10, 160, 247);
     padding: 10px;
-    background-color: rgb(167, 167, 167);
     color: white;
     border: none;
     cursor: pointer;
-    align-self: center;
-    text-align: center;
 }
 
 #form-modal button:hover {
     background-color:  rgb(29, 97, 84) ;
 }
 
-
-/* handling preview section display */
-
+/*hiding default img and text */
+.hidden {
+    display: none;
+}
