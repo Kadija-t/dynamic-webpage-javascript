@@ -173,8 +173,6 @@ function openModal() {
     addModal.style.display = "none";
   });
 
-  //to do => cibler le bon element pour fermer la modale
-
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
@@ -188,10 +186,9 @@ function openModal() {
   });
   
 }
-openModal()
+openModal();
 
 // category key-value -declaring categories
-
 const categoryId = {
   "Objets": 1,
   "Appartements": 2,
@@ -199,12 +196,14 @@ const categoryId = {
 };
 
 // adding option for each category and using category id as value
+const categorySelect = document.getElementById("category");
 
-// Object.keys(categoryId).forEach(category => {
-//   const option = document.createElement("option");
-//   option.value = categoryId[category];
-//   option.textContent = category;
-// });
+Object.keys(categoryId).forEach(category => {
+  const option = document.createElement("option");
+  option.value = categoryId[category];
+  option.textContent = category;
+  categorySelect.appendChild(option);
+});
 
 /*displaying works in the modal*/
 
@@ -303,6 +302,8 @@ document.addEventListener("DOMContentLoaded", function() {
 closeAddModal.addEventListener("click", () => {
   addModal.style.display = "none";
   galleryModal.style.display = "flex";
+
+  document.getElementById("hidden-form").style.display = "none";
 });
 
 form.addEventListener("submit", (e) => {
@@ -311,11 +312,11 @@ form.addEventListener("submit", (e) => {
   const title = document.getElementById("title").value;
   const image = document.querySelector(".image").files[0];
   const categoryValue = document.getElementById("category").value;
-  const category = categoryId[categoryValue];
+  const category = categoryValue;
   
 //validating  the form
 
-    if (!validateForm(title, image, categoryValue)) return;
+    if (!validateForm(title, image, category)) return;
 
     console.log("Form submitted with:", { title, image, category });
     
@@ -348,6 +349,13 @@ form.addEventListener("submit", (e) => {
           title.value = "";
           image.value = null;
           category.value = '';
+
+          // close form after submission
+
+          addModal.style.display = "none";
+          galleryModal.style.display = "flex";
+          document.getElementById("hidden-form").style.display = "none";
+
           getWorks();
         })
         .catch((error) => {

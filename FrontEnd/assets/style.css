@@ -153,7 +153,6 @@ li:hover {
 	object-fit: cover;
 	overflow: hidden;
 	box-sizing: border-box;
-
 }
 
 #contact {
@@ -206,31 +205,27 @@ footer nav ul {
 }
 
 .filter-option {
-	background:white;
-	color: rgb(29, 97, 84);
-	border:1px solid rgb(29, 97, 84);
-	padding-right:15px;
-	padding-left:15px;
-	padding-bottom:8px;
-	padding-top:8px;
-	border-radius:50px ;
-	margin-bottom: 20px;
-	margin-right: 5px;
+    background: white;
+    color: rgb(29, 97, 84);
+    border: 1px solid rgb(29, 97, 84);
+    padding: 8px 15px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .active {
-	background:rgb(29, 97, 84);
-	color: white;
-	padding:8px;
-	padding-right:15px;
-	padding-left:15px;
-	padding-bottom:8px;
-	padding-top:8px;
-	border: 1px solid rgb(29, 97, 84);
-	border-radius:20px ;
+    background: rgb(29, 97, 84);
+    color: white;
+    padding: 8px 15px;
+    border: 1px solid rgb(29, 97, 84);
+    border-radius: 20px;
 }
+
 #categories-picture {
-	margin-left: 200px;
+    margin-left: 450px;
+    margin-right: auto;
 }
 
 .formContainer {
@@ -249,7 +244,7 @@ footer nav ul {
 }
 
 #h2-login {
-	margin-left:120px;
+	margin-left:20px;
 	margin-bottom: 15px;
 }
 
@@ -286,7 +281,7 @@ footer nav ul {
 }
 
 .mdp-oublie {
-	margin-left: 490px;
+	margin-left: 660px;
 	margin-top: 20px;
 	font-size: medium;
 	text-decoration: underline;
@@ -349,7 +344,7 @@ section #banner{
 	height: 100%;
 	background-color: black;
 	padding-bottom: 20px;
-	padding-left: 700px;
+	padding-left: 800px;
 	justify-content: center;
 	padding-top: 20px;
 	color: aliceblue;
@@ -507,9 +502,11 @@ button {
 }
 
 #form-modal h3 {
-    font-size: medium;
-    margin-bottom: 10px;
-	margin-left: 50px;
+    font-size:larger;
+    margin-bottom: 20px;
+	color: black;
+	margin-left: 0px;
+	font-weight: 500;
 }
 
 #close-form {
@@ -531,25 +528,43 @@ button {
 .preview-image {
     position: relative;
     width: 90%;
-    height: 45%;
-	padding: 15px 10px;
-	margin-bottom: 10px;
-    object-fit: cover;
+    max-height: 45%;
+    padding: 0;
+    margin-bottom: 30px;
     background-color: rgb(232, 241, 246);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;font-size: small;
+    justify-content: center;
+    font-size: small;
+}
+
+.preview-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+	object-fit: fill;
+    align-self:center;
+}
+
+hr {
+	color: black;
+	width: 90%;
+}
+
+.preview-image p {
+	font-size:smaller;
 }
 
 .icon-img {
 	display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
     font-size: 5em;
 	color: rgb(185, 197, 204);
+	margin-top: 10px;
 }
 
 .file-upload {
@@ -582,29 +597,36 @@ button {
 	max-width: 40%;
 	max-height: 100%;
 }
+
 #form-modal input,
 #form-modal select {
     width: 90%;
+    height: 45px;
     padding: 5px;
-    margin-bottom: 10px;
-	height:40px;
-	border:none;
-	box-shadow: rgb(26, 247, 125);
-}
-label {
-	margin-left: 0px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    border:none;
+    border-radius: 5px;
+    font-size: medium;
+	box-shadow: 0 0 5px rgb(233, 230, 230);
 }
 
 #form-modal label {
-    width: 70%;
+    width: 90%;
     margin-bottom: 10px;
+    font-size: medium;
+}
+
+#form-modal input {
+    width: 90%;
+    margin-bottom: 10px;
+	padding-left: 0px;
 }
 
 #form-modal button {
     width: 70%;
     margin-top: 20px;
 	margin-left: 10px;
-	background-color: rgb(10, 160, 247);
     padding: 10px;
     color: white;
     border: none;
