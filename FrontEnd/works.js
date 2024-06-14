@@ -1,6 +1,3 @@
-// DATA SET
-// ASYNC
-// Créer des blocs html avec les backstick ``
 
 const logout = document.querySelector("#logout");
 const login = document.querySelector("#login");
@@ -32,7 +29,7 @@ async function getFilters() {
     console.error("Impossible de récupérer les filtres :", error);
   }
 }
-
+// updating buttons aspect
 function setActiveButton(button) {
   document
     .querySelectorAll(".filter-option")
@@ -40,6 +37,7 @@ function setActiveButton(button) {
   button.classList.add("active");
 }
 
+//create buttons and update values
 function createFilterButton(value, text) {
   const button = document.createElement("button");
   button.className = "filter-option";
@@ -86,6 +84,7 @@ async function getWorks(categoryId = 0) {
     console.log(error);
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   getFilters().then(() => {
@@ -345,7 +344,7 @@ form.addEventListener("submit", (e) => {
             }
         })
         .then(() => {
-          // clear tes inputs
+          // clear inputs
           title.value = "";
           image.value = null;
           category.value = '';

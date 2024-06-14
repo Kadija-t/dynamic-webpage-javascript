@@ -1,9 +1,3 @@
-// 1 : Récupérer les informations du formulaire
-// 2 : Vérifier si l'email et ou le mot de passe ne sont pas vide
-// 3 : Vérifier s => alert('Merci de remplir tous les champs')i l'email est bien un type email
-// 4 : Envoyer le (REGEX) => alert('Merci d'entrer un email valide')s informations sur l'API en POST
-// soit id correct - API succès avec Token
-// soit 401 -> alerte mdp/email incorrect
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form");
@@ -63,10 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(error);
     }
 
-    // Effectuer la requête POST pour se connecter
-
-    /*Vérifie si un ou plusieurs champs sont vides si oui envoie alerte*/
-    /*Envoi de la requête en POST*/
   });
 
   /*Fonction avec regex pour vérifier la validité du format email entré*/
