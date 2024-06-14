@@ -404,7 +404,7 @@ h3 {
 }
 
 #gallery figure {
-	width: 18%;
+	width: 15%;
 	margin: 10px;
 	text-align: center;
 	position: relative;
@@ -524,12 +524,10 @@ button {
     cursor: pointer;
     color: black;
 }
-
 .preview-image {
     position: relative;
-    width: 90%;
-    max-height: 45%;
-    padding: 0;
+    width: 100%;
+    height: 145px;
     margin-bottom: 30px;
     background-color: rgb(232, 241, 246);
     display: flex;
@@ -537,14 +535,14 @@ button {
     align-items: center;
     justify-content: center;
     font-size: small;
+    overflow: hidden;
 }
 
 .preview-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-	object-fit: fill;
-    align-self:center;
+    max-width: none;
+    height: 145px;
+    object-fit: fill;
+    object-position: center;
 }
 
 hr {
