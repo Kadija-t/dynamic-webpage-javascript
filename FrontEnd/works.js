@@ -45,7 +45,7 @@ function createFilterButton(value, text) {
   button.textContent = text;
   return button;
 }
-
+//b display categories
 async function getWorks(categoryId = 0) {
   try {
     const response = await fetch("http://localhost:5678/api/works");
