@@ -1,4 +1,4 @@
-#  Dynamic Web Page Development for Interior Sophie Bluel
+#  Dynamic Web Page Development for Interior Architect Sophie Bluel
 
 ## English 🇬🇧 ⬇️
 
